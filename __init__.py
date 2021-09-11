@@ -11,7 +11,9 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] ='mysql://gmkeshari:gmkeshari123@database1.ctdcirbzvpt9.ap-south-1.rds.amazonaws.com:3306/test1' 
+app.config['MYSQL_DATABASE_USER'] = 'db_user'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
+app.config['MYSQL_DATABASE_PORT'] = '3306' 
 
 db = SQLAlchemy(app)
 
