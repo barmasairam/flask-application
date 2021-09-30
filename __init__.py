@@ -1,15 +1,19 @@
 from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
+import os
+
 app = Flask(__name__)
 
 
-app.config['MYSQL_HOST'] = 'mysql1'
-app.config['MYSQL_USER'] = 'db_user'
-app.config['MYSQL_PASSWORD'] = 'b98eLkdGWz2dFGmmnbbzxq'
-app.config['MYSQL_DB'] = 'MyDB'
+
+
 
 mysql = MySQL(app)
-
+app.config["MYSQL_DATABASE_USER"] = "root"
+app.config["MYSQL_DATABASE_PASSWORD"] = os.environ.get('DB_PASS')
+app.config["MYSQL_DATABASE_DB"] = os.environ.get('DB')
+app.config["MYSQL_DATABASE_HOST"] = os.getenv("MYSQL_SERVICE_HOST")
+app.config["MYSQL_DATABASE_PORT"] = os.getenv("MYSQL_SERVICE_PORT")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
